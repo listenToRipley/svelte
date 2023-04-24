@@ -1,10 +1,33 @@
 <script>
-	export let name;
+	// export let name;
+	let firstName = 'Natalie';
+	let lastName = 'Kendrick';
+	let color = 'blue';
+	let showText = false;
+
+	$: name = firstName + ' ' + lastName;
+
+	const toggle = () => {
+		color = color === 'goldenrod' ? color = 'red' : color = 'goldenrod';
+		showText = !showText;
+	};
+
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
+	<h1 style="color: {color}">Hello {name}!</h1>
+
+	{#if showText }
+
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+
+	{:else}
+		<p>Ops</p>
+	{/if}
+
+	<button on:click={()=> color='goldenrod' }>Click</button>
+
+	<button on:click={toggle}>Click More</button>
 </main>
 
 <style>
